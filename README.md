@@ -29,7 +29,7 @@ Para executar o projeto, você precisa ter:
 - Python 3.10 ou superior.
 - Um ambiente virtual Python já criado na pasta do projeto.
 - Ollama instalado e em execução localmente.
-- Um modelo disponível no Ollama, como llama3.1.
+- llama3.1 instalado.
 - Node.js 20.9.0 ou superior para o frontend.
 - npm instalado junto com o Node.
 
@@ -37,38 +37,21 @@ Para executar o projeto, você precisa ter:
 
 A API principal está em backend/api.py e usa FastAPI.
 
+### Dependências Python
+
+As bibliotecas Python usadas pelo backend estão listadas no arquivo requirements.txt.
+A partir da pasta do projeto:
+
+    python -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+
 ### Como iniciar a API
 
 A partir da pasta do projeto:
 
     cd /home/arthur_qu/Agente_de_Triagem_de_Literatura_Medica/backend
     ../venv/bin/uvicorn api:app --reload
-
-Se o seu ambiente virtual estiver em outro caminho, ajuste o executável do Python/uvicorn conforme necessário.
-
-### Documentação interativa
-
-Com a API rodando, a documentação aparece nestes endereços:
-
-- /docs para Swagger UI
-- /redoc para ReDoc
-
-Exemplo:
-
-- http://127.0.0.1:8000/docs
-- http://127.0.0.1:8000/redoc
-
-### Endpoint disponível
-
-- POST /executar
-
-Esse endpoint recebe uma pergunta clínica e devolve os artigos recuperados e a síntese gerada pelo pipeline.
-
-## Geração do banco vetorial
-
-Antes de usar o sistema, é necessário criar o banco local de embeddings a partir do PubMedQA.
-
-O script responsável por isso é backend/feed_db.py.
 
 ### Como gerar o banco
 
@@ -131,11 +114,3 @@ Frontend:
 3. Inicie a API com FastAPI.
 4. Inicie o frontend com Next.js.
 5. Acesse a interface e teste uma pergunta clínica.
-
-## Exemplo de uso
-
-Pergunta de teste sugerida:
-
-    Qual a eficácia da metformina em idosos com diabetes tipo 2 comparada à dieta?
-
-Esse tipo de pergunta permite testar a decomposição PICO, a busca semântica e a síntese final do modelo.
