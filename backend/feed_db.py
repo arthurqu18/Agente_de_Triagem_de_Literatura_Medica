@@ -5,7 +5,7 @@ from langchain_core.documents import Document
 
 # Carrega a versão 'pqa_labeled' do PubMedQA (contém dados validados por especialistas)
 dataset = load_dataset("qiaojin/PubMedQA", "pqa_labeled", split="train")
-amostra = dataset.select(range(50))
+amostra = dataset.select(range(100))
 
 documentos = []
 for item in amostra:
