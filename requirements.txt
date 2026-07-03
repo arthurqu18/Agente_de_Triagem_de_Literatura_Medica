@@ -1,9 +1,17 @@
-fastapi
-uvicorn
-chromadb
-datasets
-langchain-community
-langchain-core
-langchain-chroma
-langchain-huggingface
-sentence-transformers
+# IMPORTANTE: instale o PyTorch (CPU) ANTES deste arquivo, senão o pip vai
+# tentar baixar as libs CUDA da NVIDIA (varios GB) mesmo sem GPU, o que trava
+# a instalacao. Rode nesta ordem, dentro do venv ja ativado:
+#
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements.txt
+#
+fastapi==0.139.0
+uvicorn==0.49.0
+chromadb==1.5.9
+datasets==5.0.0
+langchain-community==0.4.2
+langchain-core==1.4.8
+langchain-chroma==1.1.0
+langchain-huggingface==1.2.2
+sentence-transformers==5.6.0
+python-dotenv==1.0.1

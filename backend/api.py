@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 
 from pipeline import Run
@@ -20,7 +21,9 @@ async def responder_pergunta(question: str):
     """
     if not question:
         raise HTTPException(status_code=400, detail="Faça uma pergunta")
-    
-    model = Run(question).executar()
+
+    # O pipeline usa um LLM local (Ollama) de forma síncrona e demorada.
+    # Rodamos em uma thread separada para não bloquear o event loop do FastAPI.
+    model = await run_in_threadpool(Run(question).executar)
 
     return model
